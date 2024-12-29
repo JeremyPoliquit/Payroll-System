@@ -1,48 +1,59 @@
 package com.spring.backend.Entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class Employee {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long employeeId;
-
+    private Long id;
     private String name;
     private String position;
     private String department;
 
-    public Employee () {}
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "salary_id")
+    private FullTimeSalary fullTimeSalary;
 
-    public Long getEmployeeId () {
-        return employeeId;
+    // Getters and Setters
+    public Long getId() {
+        return id;
     }
 
-    public String getName () {
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
         return name;
     }
-    
-    public String getPosition () {
-        return position;
-    }
 
-    public String getDepartment () {
-        return department;
-    }
-
-    public void setName (String name) {
+    public void setName(String name) {
         this.name = name;
     }
 
-    public void setPosition (String position) {
+    public String getPosition() {
+        return position;
+    }
+
+    public void setPosition(String position) {
         this.position = position;
     }
 
-    public void setDepartment (String department) {
+    public String getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(String department) {
         this.department = department;
+    }
+
+    public FullTimeSalary getFullTimeSalary() {
+        return fullTimeSalary;
+    }
+
+    public void setFullTimeSalary(FullTimeSalary fullTimeSalary) {
+        this.fullTimeSalary = fullTimeSalary;
     }
 }

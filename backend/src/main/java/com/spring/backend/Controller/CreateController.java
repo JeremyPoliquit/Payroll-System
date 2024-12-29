@@ -13,13 +13,15 @@ import com.spring.backend.Service.CreateService;
 @RestController
 @RequestMapping("/api/create")
 public class CreateController {
-    
+
     @Autowired
     private CreateService createService;
 
+    // Handle the POST request from frontend
     @PostMapping
-    public ResponseEntity<Employee> createEmployee (@RequestBody Employee employee) {
-        Employee saveEmployee = createService.createEmployee(employee);
-        return ResponseEntity.ok(saveEmployee);
+    public ResponseEntity<Employee> createEmployeeAndSalary(@RequestBody Employee employee) {
+        // Ensure that the salary is saved before the employee
+        Employee savedEmployee = createService.saveEmployee(employee);
+        return ResponseEntity.ok(savedEmployee);
     }
 }
