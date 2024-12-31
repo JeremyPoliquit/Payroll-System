@@ -6,12 +6,14 @@ function CreateEmployee() {
     name: "",
     position: "",
     department: "",
-    
+
     hoursWorked: "",
     salaryAmount: "",
     timeIn: "",
     timeOut: "",
   });
+
+  const [selectedOption, setSelectedOption] = useState("")
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -19,6 +21,8 @@ function CreateEmployee() {
       ...prev,
       [name]: value,
     }));
+
+    setSelectedOption(e.target.value)
   };
 
   const handleSubmit = async (e) => {
@@ -29,6 +33,7 @@ function CreateEmployee() {
       position: account.position,
       department: account.department,
       fullTimeSalary: {
+        jobType: account.jobType,
         hoursWorked: account.hoursWorked,
         salaryAmount: account.salaryAmount,
         timeIn: account.timeIn,
@@ -46,6 +51,7 @@ function CreateEmployee() {
         name: "",
         position: "",
         department: "",
+        jobType: "",
         hoursWorked: "",
         salaryAmount: "",
         timeIn: "",
@@ -96,6 +102,32 @@ function CreateEmployee() {
             onChange={handleChange}
             placeholder="Computer Studies"
           />
+        </label>
+        <label className="flex justify-center gap-2">
+          <form className="flex justify-between gap-6">
+            <div className="flex items-center gap-2">
+              <span>Full Time</span>
+              <input
+                type="radio"
+                className="radio radio-sm"
+                name="jobType"
+                value="Full Time"
+                onChange={handleChange}
+                checked={selectedOption === "Full Time"}
+              />
+            </div>
+            <div className="flex items-center gap-2">
+              <span>Part Time</span>
+              <input
+                type="radio"
+                className="radio radio-sm"
+                name="jobType"
+                value="Part Time"
+                onChange={handleChange}
+                checked={selectedOption === "Part Time"}
+              />
+            </div>
+          </form>
         </label>
 
         {/* Fulltime Base */}
