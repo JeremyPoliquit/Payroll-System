@@ -17,13 +17,10 @@ public class CreateService {
     private FulltimeSalaryRepository fullTimeSalaryRepository;
 
     public Employee saveEmployee(Employee employee) {
-        // Save the FullTimeSalary first
         FullTimeSalary savedSalary = fullTimeSalaryRepository.save(employee.getFullTimeSalary());
 
-        // Set the salary_id in Employee before saving
         employee.setFullTimeSalary(savedSalary);
 
-        // Save the Employee along with the linked salary
         return employeeRepository.save(employee);
     }
 }
