@@ -18,7 +18,31 @@ function DisplayFulltime() {
   }, []);
 
   return (
-    <div className="flex justify-center items-center">
+    <div className="flex flex-col justify-center items-center">
+      <div className="flex justify-between w-full px-8">
+        <div>
+          <select className="select select-sm select-bordered w-full max-w-xs">
+            <option disabled selected>
+              Filter
+            </option>
+            <option>Full Time</option>
+            <option>Part Time</option>
+          </select>
+        </div>
+        <div>
+          <label className="input input-sm input-bordered flex items-center gap-2">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 16 16"
+              fill="currentColor"
+              className="h-4 w-4 opacity-70"
+            >
+              <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM12.735 14c.618 0 1.093-.561.872-1.139a6.002 6.002 0 0 0-11.215 0c-.22.578.254 1.139.872 1.139h9.47Z" />
+            </svg>
+            <input type="text" className="grow" placeholder="Search Name" />
+          </label>
+        </div>
+      </div>
       <div className="overflow-x-auto">
         <table className="table text-center">
           <thead>
@@ -43,7 +67,9 @@ function DisplayFulltime() {
                     {employee.department}
                   </span>
                 </td>
-                <td className="font-semibold">{employee.fullTimeSalary.jobType}</td>
+                <td className="font-semibold">
+                  {employee.fullTimeSalary.jobType}
+                </td>
                 <td className="font-semibold">
                   {employee.fullTimeSalary.salaryAmount}
                 </td>
@@ -59,8 +85,22 @@ function DisplayFulltime() {
                 <td className="font-semibold">
                   <div className="flex justify-between gap-4">
                     <div></div>
-                    <div><button type="button" className="btn btn-primary btn-xs text-white">Update</button></div>
-                    <div><button type="button" className="btn btn-error btn-xs text-white">Delete</button></div>
+                    <div>
+                      <button
+                        type="button"
+                        className="btn btn-primary btn-xs text-white"
+                      >
+                        Update
+                      </button>
+                    </div>
+                    <div>
+                      <button
+                        type="button"
+                        className="btn btn-error btn-xs text-white"
+                      >
+                        Delete
+                      </button>
+                    </div>
                   </div>
                 </td>
               </tr>
