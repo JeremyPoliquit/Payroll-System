@@ -3,24 +3,17 @@ package com.spring.backend.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.spring.backend.Entity.Employee;
-import com.spring.backend.Entity.FullTimeSalary;
-import com.spring.backend.Repository.EmployeeRepository;
-import com.spring.backend.Repository.FulltimeSalaryRepository;
+import com.spring.backend.Entity.FullTime;
+import com.spring.backend.Repository.FullTimeRepository;
 
 @Service
 public class CreateService {
-    @Autowired
-    private EmployeeRepository employeeRepository;
 
     @Autowired
-    private FulltimeSalaryRepository fullTimeSalaryRepository;
+    private FullTimeRepository fullTimeSalaryRepository;
 
-    public Employee saveEmployee(Employee employee) {
-        FullTimeSalary savedSalary = fullTimeSalaryRepository.save(employee.getFullTimeSalary());
-
-        employee.setFullTimeSalary(savedSalary);
-
-        return employeeRepository.save(employee);
+    public FullTime saveFullTime(FullTime fullTime) {
+        return fullTimeSalaryRepository.save(fullTime);
     }
+
 }
