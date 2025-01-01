@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.spring.backend.Entity.FullTime;
+import com.spring.backend.Entity.PartTime;
 import com.spring.backend.Service.CreateService;
 
 @RestController
@@ -19,6 +20,11 @@ public class CreateController {
     @PostMapping("/fulltime")
     public FullTime createFullTime (@RequestBody FullTime fullTime) {
         return createService.saveFullTime(fullTime);
+    }
+
+    @PostMapping("/parttime")
+    public PartTime createPartTime (@RequestBody PartTime partTime) {
+        return createService.savePartTime(partTime);
     }
 
 }
