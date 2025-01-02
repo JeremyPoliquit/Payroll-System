@@ -9,7 +9,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/client/create' element={<CreateEmployee />} />
-        <Route path='/client/display-fulltime' element={<DisplayFulltime />} />
+        <Route path='/client/records' element={<DisplayFulltime />} />
       </Routes>
     </Router>
   )
