@@ -11,7 +11,8 @@ import lombok.Setter;
 public class PartTime extends Employee {
 
     private double ratePerHour;
-    private int hoursWorked;
     private double wage;
+    private String timeIn;
+    private String timeOut;
 
 }
