@@ -33,8 +33,9 @@ public class CreateController {
     }
 
     @PostMapping("/parttime")
-    public PartTime createPartTime (@RequestBody PartTime partTime) {
-        return createService.savePartTime(partTime);
+    public ResponseEntity<PartTime> createPartTime (@RequestBody PartTime partTime) {
+        PartTime savedEmployee = createService.savePartTime(partTime);
+        return ResponseEntity.ok(savedEmployee);
     }
 
 }
