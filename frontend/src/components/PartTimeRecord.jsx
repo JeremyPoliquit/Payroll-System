@@ -55,7 +55,7 @@ function PartTimeRecord() {
 
   return (
     <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
-      <h1 className="text-xl">Employee Record</h1>
+      <h1 className="text-xl">Part Time Record</h1>
       <label className="input input-bordered flex items-center gap-2">
         Name:
         <input
