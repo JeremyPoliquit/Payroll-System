@@ -1,5 +1,8 @@
 package com.spring.backend.Service;
 
+import java.time.LocalTime;
+import java.time.Duration;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,7 +21,7 @@ public class CreateService {
 
     @Autowired
     private FullTimeRepository fullTimeSalaryRepository;
-    
+
     @Autowired
     private PartTimeRepository partTimeRepository;
 
@@ -31,7 +34,26 @@ public class CreateService {
     }
 
     public PartTime savePartTime(PartTime partTime) {
+        double wage = calculateWage(partTime);
+        partTime.setWage(wage);
         return partTimeRepository.save(partTime);
+    }
+
+    // Logic to calculate wage for part-time employees
+    private double calculateWage(PartTime partTimeEmployee) {
+        try {
+            LocalTime timeIn = LocalTime.parse(partTimeEmployee.getTimeIn());
+            LocalTime timeOut = LocalTime.parse(partTimeEmployee.getTimeOut());
+
+            // Calculate hours worked
+            long minutesWorked = Duration.between(timeIn, timeOut).toMinutes();
+            double hoursWorked = minutesWorked / 60.0;
+
+            // Calculate wage
+            return hoursWorked * partTimeEmployee.getRatePerHour();
+        } catch (Exception e) {
+            throw new IllegalArgumentException("Invalid time format: " + e.getMessage());
+        }
     }
 
 }
