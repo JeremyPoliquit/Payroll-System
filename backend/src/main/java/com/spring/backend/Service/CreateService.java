@@ -24,7 +24,7 @@ public class CreateService {
     private EmployeeRepository employeeRepository;
 
     @Autowired
-    private UserAccountFullTimeRepository userAccountRepository;
+    private UserAccountFullTimeRepository userAccountFullTimeRepository;
 
     @Autowired
     private UserAccountPartTimeRepository userAccountPartTimeRepository;
@@ -40,7 +40,7 @@ public class CreateService {
     }
 
     public UserAccountFullTime saveUserAccountTimeFullTime(UserAccountFullTime userAccount) {
-        return userAccountRepository.save(userAccount);
+        return userAccountFullTimeRepository.save(userAccount);
     }
 
     public UserAccountPartTime saveUserAccountPartTime(UserAccountPartTime userAccountPartTime) {
