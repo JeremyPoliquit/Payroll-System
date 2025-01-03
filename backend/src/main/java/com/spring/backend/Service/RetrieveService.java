@@ -4,10 +4,12 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.spring.backend.Entity.Employee;
 import com.spring.backend.Entity.FullTime;
 import com.spring.backend.Entity.PartTime;
 import com.spring.backend.Entity.UserAccountFullTime;
 import com.spring.backend.Entity.UserAccountPartTime;
+import com.spring.backend.Repository.EmployeeRepository;
 import com.spring.backend.Repository.FullTimeRepository;
 import com.spring.backend.Repository.PartTimeRepository;
 import com.spring.backend.Repository.UserAccountFullTimeRepository;
@@ -18,6 +20,8 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public class RetrieveService {
+
+    private final EmployeeRepository employeeRepository;
 
     private final FullTimeRepository fullTimeRepository;
 
@@ -45,5 +49,10 @@ public class RetrieveService {
     // User Account Part Time Record
     public List<UserAccountPartTime> getUserAccountPartTime() {
         return userAccountPartTimeRepository.findAll();
+    }
+
+    // Filtering by Username
+    public List<Employee> getByEmployeeName (String name) {
+        return employeeRepository.findByNameIgnoreCase(name);
     }
 }
