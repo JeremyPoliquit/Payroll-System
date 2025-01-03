@@ -9,15 +9,25 @@ import org.springframework.stereotype.Service;
 import com.spring.backend.Entity.Employee;
 import com.spring.backend.Entity.FullTime;
 import com.spring.backend.Entity.PartTime;
+import com.spring.backend.Entity.UserAccountFullTime;
+import com.spring.backend.Entity.UserAccountPartTime;
 import com.spring.backend.Repository.EmployeeRepository;
 import com.spring.backend.Repository.FullTimeRepository;
 import com.spring.backend.Repository.PartTimeRepository;
+import com.spring.backend.Repository.UserAccountFullTimeRepository;
+import com.spring.backend.Repository.UserAccountPartTimeRepository;
 
 @Service
 public class CreateService {
 
     @Autowired
     private EmployeeRepository employeeRepository;
+
+    @Autowired
+    private UserAccountFullTimeRepository userAccountRepository;
+
+    @Autowired
+    private UserAccountPartTimeRepository userAccountPartTimeRepository;
 
     @Autowired
     private FullTimeRepository fullTimeSalaryRepository;
@@ -27,6 +37,14 @@ public class CreateService {
 
     public Employee saveEmployee(Employee employee) {
         return employeeRepository.save(employee);
+    }
+
+    public UserAccountFullTime saveUserAccountTimeFullTime(UserAccountFullTime userAccount) {
+        return userAccountRepository.save(userAccount);
+    }
+
+    public UserAccountPartTime saveUserAccountPartTime(UserAccountPartTime userAccountPartTime) {
+        return userAccountPartTimeRepository.save(userAccountPartTime);
     }
 
     public FullTime saveFullTime(FullTime fullTime) {
