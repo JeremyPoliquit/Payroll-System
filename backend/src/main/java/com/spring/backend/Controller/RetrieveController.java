@@ -4,8 +4,10 @@ import java.util.List;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.spring.backend.Entity.Employee;
 import com.spring.backend.Entity.FullTime;
 import com.spring.backend.Entity.PartTime;
 import com.spring.backend.Entity.UserAccountFullTime;
@@ -44,4 +46,11 @@ public class RetrieveController {
     public List<UserAccountPartTime> getUserAccountPartTime() {
         return retrieveService.getUserAccountPartTime();
     }
+
+    // GET FullTime By Name record
+    @GetMapping("/fulltime/username")
+    public List<Employee> getByEmployeeName (@RequestParam String name) {
+        return retrieveService.getByEmployeeName(name);
+    }
+    
 }
