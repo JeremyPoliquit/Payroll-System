@@ -1,54 +1,8 @@
 import React, { useState } from "react";
-import axios from "axios";
 
-function FullTimeRecord() {
-  const [account, setAccount] = useState({
-    name: "",
-    position: "",
-    department: "",
-    salary: "",
-    timeIn: "",
-    timeOut: ""
-  });
-
-  // Handle form input changes
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setAccount({
-      ...account,
-      [name]: value
-    })
-  }
-  
-  // Handle form submission
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    try {
-      const response = await axios.post("/api/create/fulltime", account);
-      console.log("Response from server:", response.data);
-      alert("New record has been successfully created!");
-
-      // Reset form state
-      setAccount({
-        name: "",
-        position: "",
-        department: "",
-        salary: "",
-        timeIn: "",
-        timeOut: "",
-      });
-    } catch (error) {
-      console.error(
-        "Error during request:",
-        error.response ? error.response.data : error.message
-      );
-      alert("Failed to submit data.");
-    }
-  };
-
+function FullTimeRecord({ account, handleChange }) {
   return (
-    <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
+    <form className="flex flex-col gap-4">
       <h1 className="text-xl">Full Time Record</h1>
       <label className="input input-bordered flex items-center gap-2">
         Name:
@@ -126,11 +80,11 @@ function FullTimeRecord() {
         </label>
       </div>
 
-      <input
+      {/* <input
         type="submit"
         className="btn btn-success text-white"
         value="Create"
-      />
+      /> */}
     </form>
   );
 }
