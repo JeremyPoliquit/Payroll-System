@@ -2,16 +2,12 @@ package com.spring.backend.Controller;
 
 import java.util.List;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.spring.backend.Entity.Employee;
-import com.spring.backend.Entity.FullTime;
-import com.spring.backend.Entity.PartTime;
-import com.spring.backend.Entity.UserAccountFullTime;
-import com.spring.backend.Entity.UserAccountPartTime;
 import com.spring.backend.Service.RetrieveService;
 
 import lombok.RequiredArgsConstructor;
@@ -23,34 +19,11 @@ public class RetrieveController {
 
     private final RetrieveService retrieveService;
 
-    // GET Full Time Record
-    @GetMapping("/fulltime")
-    public List<FullTime> getFullTimeEmployee() {
-        return retrieveService.getFullTimeEmployee();
+    // GET All Full Time Record
+    @GetMapping("/fulltime/employee")
+    public ResponseEntity<List<Employee>> getAllEmployeesWithFullTime() {
+        List<Employee> employees = retrieveService.getAllEmployeesWithFullTime();
+        return ResponseEntity.ok(employees);
     }
 
-    // GET Part Time Record
-    @GetMapping("/parttime")
-    public List<PartTime> getPartTimeEmployee() {
-        return retrieveService.getPartTimeEmployee();
-    }
-
-    // GET UserAccount Full Time Record
-    @GetMapping("/account-fulltime")
-    public List<UserAccountFullTime> getUserAccountFullTime() {
-        return retrieveService.getUserAccountFullTime();
-    }
-
-    // GET UserAccount Part Time Record
-    @GetMapping("/account-parttime")
-    public List<UserAccountPartTime> getUserAccountPartTime() {
-        return retrieveService.getUserAccountPartTime();
-    }
-
-    // GET FullTime By Name record
-    @GetMapping("/fulltime/username")
-    public List<Employee> getByEmployeeName (@RequestParam String name) {
-        return retrieveService.getByEmployeeName(name);
-    }
-    
 }
