@@ -1,16 +1,15 @@
 package com.spring.backend.Entity;
 
-import jakarta.persistence.*;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
-import lombok.Getter;
-import lombok.Setter;
+import jakarta.persistence.*;
+import lombok.*;
 
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
 @Getter
 @Setter
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Employee {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -19,4 +18,9 @@ public class Employee {
     private String position;
     private String department;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_account_id", referencedColumnName = "id")    
+    private UserAccount userAccount;
 }
+
+
