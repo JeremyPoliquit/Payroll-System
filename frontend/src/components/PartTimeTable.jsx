@@ -1,18 +1,34 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-const PartTimeTable = () => {
+const PartTimeTable = ({ searchTerm }) => {
   const [partTimeRecords, setPartTimeRecords] = useState([]);
 
   useEffect(() => {
-    axios.get('/api/get/parttime/record')  // Assuming you have a part-time endpoint
-      .then(response => {
+    const fetchRecords = async () => {
+      try {
+        const response = await axios.get("/api/get/parttime/search", {
+          params: { name: searchTerm },
+        });
         setPartTimeRecords(response.data);
-      })
-      .catch(error => {
-        console.error('There was an error fetching the part-time records!', error);
-      });
-  }, []);
+      } catch (error) {
+        console.error(
+          "There was an error fetching the part-time records!",
+          error
+        );
+      }
+    };
+
+    // Only fetch if there's a search term, otherwise get all records
+    if (searchTerm) {
+      fetchRecords();
+    } else {
+      axios
+        .get("/api/get/parttime/record")
+        .then((response) => setPartTimeRecords(response.data))
+        .catch((error) => console.error(error));
+    }
+  }, [searchTerm]);
 
   return (
     <div className="overflow-x-auto">

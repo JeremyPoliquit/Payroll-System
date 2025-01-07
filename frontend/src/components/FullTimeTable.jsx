@@ -1,22 +1,34 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 
-const FullTimeTable = () => {
+const FullTimeTable = ({ searchTerm }) => {
   const [fullTimeRecords, setFullTimeRecords] = useState([]);
 
   useEffect(() => {
-    axios
-      .get("/api/get/fulltime/record")
-      .then((response) => {
+    const fetchRecords = async () => {
+      try {
+        const response = await axios.get("/api/get/fulltime/search", {
+          params: { name: searchTerm },
+        });
         setFullTimeRecords(response.data);
-      })
-      .catch((error) => {
+      } catch (error) {
         console.error(
           "There was an error fetching the full-time records!",
           error
         );
-      });
-  }, []);
+      }
+    };
+
+    if (searchTerm) {
+      fetchRecords();
+    } else {
+      axios
+        .get("/api/get/fulltime/record")
+        .then((response) => setFullTimeRecords(response.data))
+        .catch((error) => console.error(error));
+    }
+  }, [searchTerm]);
+
   return (
     <div className="overflow-x-auto">
       <table className="table border-2 border-black text-center">
