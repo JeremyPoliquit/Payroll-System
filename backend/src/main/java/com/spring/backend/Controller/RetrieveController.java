@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.spring.backend.Entity.FullTime;
@@ -24,9 +25,19 @@ public class RetrieveController {
         return retrieveService.getFullTimeRecord();
     }
 
+    @GetMapping("/fulltime/search")
+    public List<FullTime> searchFullTimeByName(@RequestParam String name) {
+        return retrieveService.searchFullTimeByName(name);
+    }
+
     @GetMapping("/parttime/record")
     public List<PartTime> getPartTimeRecord () {
         return retrieveService.getPartTimeRecord();
+    }
+
+    @GetMapping("/parttime/search")
+    public List<PartTime> searchPartTimeByName(@RequestParam String name) {
+        return retrieveService.searchPartTimeByName(name);
     }
 
 }

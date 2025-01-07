@@ -23,8 +23,16 @@ public class RetrieveService {
         return fullTimeRepository.findAll();
     }
 
+    public List<FullTime> searchFullTimeByName(String name) {
+        return fullTimeRepository.findByNameContainingIgnoreCase(name);
+    }
+
     public List<PartTime> getPartTimeRecord () {
         return partTimeRepository.findAll();
+    }
+
+    public List<PartTime> searchPartTimeByName(String name) {
+        return partTimeRepository.findByNameContainingIgnoreCase(name);
     }
 
 }
