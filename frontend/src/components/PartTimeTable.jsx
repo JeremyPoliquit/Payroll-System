@@ -2,13 +2,16 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 const PartTimeTable = () => {
-  const [fullTimeEmployees, setFullTimeEmployees] = useState([]);
+  const [partTimeRecords, setPartTimeRecords] = useState([]);
 
   useEffect(() => {
-    axios
-      .get("/api/record/parttime")
-      .then((response) => setFullTimeEmployees(response.data))
-      .catch((error) => console.error(error));
+    axios.get('/api/get/parttime/record')  // Assuming you have a part-time endpoint
+      .then(response => {
+        setPartTimeRecords(response.data);
+      })
+      .catch(error => {
+        console.error('There was an error fetching the part-time records!', error);
+      });
   }, []);
 
   return (
@@ -25,15 +28,15 @@ const PartTimeTable = () => {
           </tr>
         </thead>
         <tbody>
-          {fullTimeEmployees.map((emp) => (
-            <tr key={emp.id}>
-              <td className="font-semibold">{emp.name}</td>
-              <td className="font-semibold">{emp.position}</td>
-              <td className="font-semibold">{emp.department}</td>
-              <td className="font-semibold">{emp.wage}</td>
-              <td className="font-semibold">{emp.ratePerHour}</td>
-              <td className="font-semibold flex justify-between">
-                <div> {emp.timeIn}AM</div>-<div> {emp.timeOut}PM</div>
+          {partTimeRecords.map((record) => (
+            <tr key={record.id}>
+              <td className="font-semibold">{record.name}</td>
+              <td className="font-semibold">{record.position}</td>
+              <td className="font-semibold">{record.department}</td>
+              <td className="font-semibold">{record.wage}</td>
+              <td className="font-semibold">{record.rate}</td>
+              <td className="font-semibold flex justify-between gap-2">
+                <div> {record.timeIn}AM</div>-<div> {record.timeOut}PM</div>
               </td>
             </tr>
           ))}
