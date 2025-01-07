@@ -29,37 +29,41 @@ function CreateEmployee() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const userAccountFullTime = {
+    const FullTime = {
       name: account.name,
       position: account.position,
       department: account.department,
       salary: account.salary,
       timeIn: account.timeIn,
       timeOut: account.timeOut,
-      email: account.email,
-      password: account.password,
+      userAccount: {
+        email: account.email,
+        password: account.password
+      }
     };
 
-    const userAccountPartTime = {
+    const PartTime = {
       name: account.name,
       position: account.position,
       department: account.department,
-      ratePerHour: account.ratePerHour,
+      rate: account.rate,
+      wage: account.wage,
       timeIn: account.timeIn,
       timeOut: account.timeOut,
-      email: account.email,
-      password: account.password
-    }
+      userAccount: {
+        email: account.email,
+        password: account.password
+      }
+    };
 
     try {
       if (selectedOption === "FullTimeRecord") {
-        await Promise.all([
-          axios.post("/api/create/account-fulltime", userAccountFullTime),
-        ]);
+        await Promise.all([axios.post("/api/create/fulltime/record", FullTime)]);
+
         alert("Full Time and User Account have been added");
       } else if (selectedOption === "PartTimeRecord") {
         await Promise.all([
-          axios.post("/api/create/account-parttime", userAccountPartTime),
+          axios.post("/api/create/parttime/record", PartTime),
         ]);
         alert("Part Time and User Account have been added");
       }
@@ -69,6 +73,7 @@ function CreateEmployee() {
         position: "",
         department: "",
         salary: "",
+        rate: "",
         timeIn: "",
         timeOut: "",
         email: "",

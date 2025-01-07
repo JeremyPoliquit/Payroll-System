@@ -46,8 +46,8 @@ function PartTimeRecord({ account, handleChange }) {
         <input
           type="number"
           className="grow"
-          name="ratePerHour"
-          value={account.ratePerHour}
+          name="rate"
+          value={account.rate}
           onChange={handleChange}
           placeholder="12.50"
           required
