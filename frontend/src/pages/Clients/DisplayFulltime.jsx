@@ -1,43 +1,44 @@
 import React, { useState } from "react";
 import FullTimeTable from "../../components/FullTimeTable";
-import PartTimeTable from "../../components/PartTimeTable";
+import PartTimeTable from "../../components/PartTimeTable"; // Import the PartTimeRecord component
 
 function DisplayFulltime() {
-  const [selectedType, setSelectedType] = useState("FullTime");
+  const [employeeType, setEmployeeType] = useState("FullTime");
+  const [searchTerm, setSearchTerm] = useState("");
 
-  const handleFilterChange = (event) => {
-    setSelectedType(event.target.value);
+  const handleSelectChange = (event) => {
+    setEmployeeType(event.target.value);
+  };
+
+  const handleSearchChange = (event) => {
+    setSearchTerm(event.target.value);
   };
 
   return (
     <div className="flex flex-col gap-6 justify-center items-center">
       <h2>Record List</h2>
-      {/* Dropdown Option */}
-      <div className="flex justify-between w-1/2">
-        <div className="flex items-center gap-2">
-          <label htmlFor="employeeType" className="text-lg">
-            Filter Job Type:{" "}
-          </label>
+      <div className="flex justify-between items-center w-1/2">
+        <div>
+          <label>Choose Record Type:</label>
           <select
-            id="employeeType"
-            className="select select-bordered select-sm  "
-            value={selectedType}
-            onChange={handleFilterChange}
+            value={employeeType}
+            onChange={handleSelectChange}
+            className="input input-bordered select-sm"
           >
-            <option disabled selected>
-              Job Type
-            </option>
             <option value="FullTime">FullTime</option>
             <option value="PartTime">PartTime</option>
           </select>
         </div>
-        <div className="flex items-center gap-2">
-          Search:
-          <label
-            className="input input-bordered input-sm flex items-center gap-2"
-            htmlFor="search"
-          >
-            <input type="text" className="grow" placeholder="John Doe" />
+
+        <div>
+          <label className="input input-bordered input-sm flex items-center gap-2">
+            <input
+              type="text"
+              className="grow"
+              value={searchTerm}
+              onChange={handleSearchChange}
+              placeholder="Search"
+            />
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 16 16"
@@ -54,9 +55,11 @@ function DisplayFulltime() {
         </div>
       </div>
 
-      {/* Table Records */}
-      {selectedType === "FullTime" && <FullTimeTable />}
-      {selectedType === "PartTime" && <PartTimeTable />}
+      {employeeType === "FullTime" ? (
+        <FullTimeTable searchTerm={searchTerm} />
+      ) : (
+        <PartTimeTable searchTerm={searchTerm} />
+      )}
     </div>
   );
 }

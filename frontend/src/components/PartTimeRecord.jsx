@@ -1,60 +1,8 @@
 import React, { useState } from "react";
-import axios from "axios";
 
-function PartTimeRecord() {
-  const [account, setAccount] = useState({
-    name: "",
-    position: "",
-    department: "",
-    ratePerHour: "",
-    timeIn: "",
-    timeOut: "",
-  });
-
-  const [response, setResponse] = useState(null);
-  const [error, setError] = useState(null);
-  
-  // Handle form input changes
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setAccount({
-      ...account,
-      [name]: value,
-    });
-  };
-
-  // Handle form submission
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setError(null)
-    setResponse(null)
-
-    try {
-      const response = await axios.post("/api/create/parttime", account);
-      setResponse(response.data);
-      console.log("Response from server:", response.data);
-      alert("New record has been successfully created!");
-
-      // Reset form state
-      setAccount({
-        name: "",
-        position: "",
-        department: "",
-        ratePerHour: "",
-        timeIn: "",
-        timeOut: "",
-      });
-    } catch (error) {
-      console.error(
-        "Error during request:",
-        error.response ? error.response.data : error.message
-      );
-      alert("Failed to submit data.");
-    }
-  };
-
+function PartTimeRecord({ account, handleChange }) {
   return (
-    <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
+    <form className="flex flex-col gap-4">
       <h1 className="text-xl">Part Time Record</h1>
       <label className="input input-bordered flex items-center gap-2">
         Name:
@@ -93,14 +41,13 @@ function PartTimeRecord() {
         />
       </label>
 
-      {/* Fulltime Salary Information */}
       <label className="input input-bordered flex items-center gap-2">
         Rate:
         <input
           type="number"
           className="grow"
-          name="ratePerHour"
-          value={account.ratePerHour}
+          name="rate"
+          value={account.rate}
           onChange={handleChange}
           placeholder="12.50"
           required
@@ -131,12 +78,6 @@ function PartTimeRecord() {
           />
         </label>
       </div>
-
-      <input
-        type="submit"
-        className="btn btn-success text-white"
-        value="Create"
-      />
     </form>
   );
 }

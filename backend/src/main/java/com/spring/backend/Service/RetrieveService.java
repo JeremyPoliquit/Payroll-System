@@ -6,12 +6,8 @@ import org.springframework.stereotype.Service;
 
 import com.spring.backend.Entity.FullTime;
 import com.spring.backend.Entity.PartTime;
-import com.spring.backend.Entity.UserAccountFullTime;
-import com.spring.backend.Entity.UserAccountPartTime;
 import com.spring.backend.Repository.FullTimeRepository;
 import com.spring.backend.Repository.PartTimeRepository;
-import com.spring.backend.Repository.UserAccountFullTimeRepository;
-import com.spring.backend.Repository.UserAccountPartTimeRepository;
 
 import lombok.RequiredArgsConstructor;
 
@@ -20,30 +16,23 @@ import lombok.RequiredArgsConstructor;
 public class RetrieveService {
 
     private final FullTimeRepository fullTimeRepository;
-
+    
     private final PartTimeRepository partTimeRepository;
 
-    private final UserAccountFullTimeRepository userAccountFullTimeRepository;
-
-    private final UserAccountPartTimeRepository userAccountPartTimeRepository;
-
-    // Full Time Record
-    public List<FullTime> getFullTimeEmployee() {
+    public List<FullTime> getFullTimeRecord () {
         return fullTimeRepository.findAll();
     }
 
-    // Part Time Record
-    public List<PartTime> getPartTimeEmployee () {
+    public List<FullTime> searchFullTimeByName(String name) {
+        return fullTimeRepository.findByNameContainingIgnoreCase(name);
+    }
+
+    public List<PartTime> getPartTimeRecord () {
         return partTimeRepository.findAll();
     }
 
-    // User Account Full Time Record
-    public List<UserAccountFullTime> getUserAccountFullTime() {
-        return userAccountFullTimeRepository.findAll();
+    public List<PartTime> searchPartTimeByName(String name) {
+        return partTimeRepository.findByNameContainingIgnoreCase(name);
     }
 
-    // User Account Part Time Record
-    public List<UserAccountPartTime> getUserAccountPartTime() {
-        return userAccountPartTimeRepository.findAll();
-    }
 }

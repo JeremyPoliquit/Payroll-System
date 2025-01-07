@@ -8,8 +8,8 @@ function App() {
     <Router>
       <Routes>
         <Route path='/' element={<Home />} />
-        <Route path='/client/create' element={<CreateEmployee />} />
-        <Route path='/client/records' element={<DisplayFulltime />} />
+        <Route path='/hr/create/record' element={<CreateEmployee />} />
+        <Route path='/hr/show/record' element={<DisplayFulltime />} />
       </Routes>
     </Router>
   )

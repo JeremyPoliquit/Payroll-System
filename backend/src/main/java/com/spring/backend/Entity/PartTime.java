@@ -1,18 +1,15 @@
 package com.spring.backend.Entity;
 
 import jakarta.persistence.*;
-
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Entity
-@Getter
-@Setter
+@Data
+@NoArgsConstructor
 public class PartTime extends Employee {
-
-    private double ratePerHour;
+    private double rate;
     private double wage;
     private String timeIn;
     private String timeOut;
-
 }
+
