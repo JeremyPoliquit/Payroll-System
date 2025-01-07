@@ -19,6 +19,10 @@ const FullTimeTable = ({ searchTerm }) => {
       }
     };
 
+<<<<<<< HEAD
+=======
+    // Only fetch if there's a search term, otherwise get all records
+>>>>>>> 2e090d918e0b00b2b5f23f3cc2856124f64b50d2
     if (searchTerm) {
       fetchRecords();
     } else {
