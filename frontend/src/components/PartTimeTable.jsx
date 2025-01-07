@@ -7,23 +7,15 @@ const PartTimeTable = ({ searchTerm }) => {
   useEffect(() => {
     const fetchRecords = async () => {
       try {
-<<<<<<< HEAD
         const response = await axios.get("/api/get/parttime/search", {
-=======
-        const response = await axios.get('/api/get/parttime/search', {
->>>>>>> 2e090d918e0b00b2b5f23f3cc2856124f64b50d2
           params: { name: searchTerm },
         });
         setPartTimeRecords(response.data);
       } catch (error) {
-<<<<<<< HEAD
         console.error(
           "There was an error fetching the part-time records!",
           error
         );
-=======
-        console.error('There was an error fetching the part-time records!', error);
->>>>>>> 2e090d918e0b00b2b5f23f3cc2856124f64b50d2
       }
     };
 
@@ -31,16 +23,10 @@ const PartTimeTable = ({ searchTerm }) => {
     if (searchTerm) {
       fetchRecords();
     } else {
-<<<<<<< HEAD
       axios
         .get("/api/get/parttime/record")
         .then((response) => setPartTimeRecords(response.data))
         .catch((error) => console.error(error));
-=======
-      axios.get('/api/get/parttime/record')
-        .then(response => setPartTimeRecords(response.data))
-        .catch(error => console.error(error));
->>>>>>> 2e090d918e0b00b2b5f23f3cc2856124f64b50d2
     }
   }, [searchTerm]);
 
@@ -58,7 +44,7 @@ const PartTimeTable = ({ searchTerm }) => {
           </tr>
         </thead>
         <tbody>
-          {partTimeRecords.map(record => (
+          {partTimeRecords.map((record) => (
             <tr key={record.id}>
               <td className="font-semibold">{record.name}</td>
               <td className="font-semibold">{record.position}</td>

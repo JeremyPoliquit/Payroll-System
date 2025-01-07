@@ -4,7 +4,6 @@ import PartTimeTable from "../../components/PartTimeTable"; // Import the PartTi
 
 function DisplayFulltime() {
   const [employeeType, setEmployeeType] = useState("FullTime");
-  const [employeeType, setEmployeeType] = useState("fulltime");
   const [searchTerm, setSearchTerm] = useState("");
 
   const handleSelectChange = (event) => {
@@ -18,16 +17,9 @@ function DisplayFulltime() {
   return (
     <div className="flex flex-col gap-6 justify-center items-center">
       <h2>Record List</h2>
-<<<<<<< HEAD
       <div className="flex justify-between items-center w-1/2">
         <div>
           <label>Choose Record Type:</label>
-=======
-      {/* Dropdown for selecting FullTime or PartTime */}
-      <div className="flex justify-between items-center w-1/2">
-        <div>
-          <label>Record Type: </label>
->>>>>>> 2e090d918e0b00b2b5f23f3cc2856124f64b50d2
           <select
             value={employeeType}
             onChange={handleSelectChange}
@@ -62,12 +54,8 @@ function DisplayFulltime() {
           </label>
         </div>
       </div>
-<<<<<<< HEAD
 
       {employeeType === "FullTime" ? (
-=======
-      {employeeType === "fulltime" ? (
->>>>>>> 2e090d918e0b00b2b5f23f3cc2856124f64b50d2
         <FullTimeTable searchTerm={searchTerm} />
       ) : (
         <PartTimeTable searchTerm={searchTerm} />
